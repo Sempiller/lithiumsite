@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lithium | non profit project</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #111111;
+            --accent: #ffffff;
+            --text-dim: #666666;
+            --border: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--accent);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+
+        .since {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        /* Script Box */
+        .script-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 40px;
+            transition: border 0.3s ease;
+        }
+
+        .script-container:hover {
+            border-color: #444;
+        }
+
+        .script-header {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .code-area {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            color: #ddd;
+        }
+
+        /* Info Section */
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li, .support-item {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: #bbb;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border: 1px solid var(--accent);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 480px) {
+            .details { grid-template-columns: 1fr; gap: 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>LITHIUM</h1>
+            <div class="since">SINCE 2021</div>
+        </header>
+
+        <section class="script-container">
+            <div class="script-header">
+                <span>lithium.lua</span>
+                <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+            </div>
+            <div class="code-area" id="script-text">loadstring(game:HttpGet("https://raw.githubusercontent.com/Sempiller/Lithium/refs/heads/main/main.lua"))()</div>
+        </section>
+
+        <div class="details">
+            <div class="column">
+                <h3>Contributors</h3>
+                <ul>
+                    <li>Sempiller</li>
+                    <li>Akri</li>
+                    <li>Pluto</li>
+                </ul>
+            </div>
+
+            <div class="column">
+                <h3>Support</h3>
+                <div class="support-item">
+    <a href="https://portal.semp.cloud/" class="highlight">Contact Options</a>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const text = document.getElementById('script-text').innerText;
+            const btn = document.querySelector('.copy-btn');
+            
+            navigator.clipboard.writeText(text).then(() => {
+                btn.innerText = 'Copied';
+                btn.style.background = '#ffffff';
+                btn.style.color = '#000000';
+                
+                setTimeout(() => {
+                    btn.innerText = 'Copy';
+                    btn.style.background = 'transparent';
+                    btn.style.color = '#ffffff';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
